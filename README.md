@@ -1,1 +1,3 @@
 # hvol-image-classifier
+
+PINECONE_API_KEY=pcsk_7PHiNj_7bF8A3XMefY28SsHqsN7QFuS1SrXoRfkea1ByqQQskBcVSGz5ehpu9rBGYnP3H9
