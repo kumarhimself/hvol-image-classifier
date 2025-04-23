@@ -1,10 +1,15 @@
 import torch
-import torchvision.transforms as transforms
-import torch.nn.functional as F
+import torchvision.models as models
 from PIL import Image
 
-def img2vec(img_tensor):
-    binarized_img = (img_tensor >= 0.5).float()
-    binarized_img = F.avg_pool2d(binarized_img, kernel_size=16, stride=16)
+model = models.resnet50(pretrained=True)
+model = torch.nn.Sequential(*(list(model.children())[:-1]))  # remove final classification layer
+_ = model.eval()
 
-    return binarized_img.flatten()
+def img2veimg2vecc(img_tensor):
+  if img_tensor.dim() == 3:
+    img_tensor = img_tensor.unsqueeze(0)  # add batch dimension
+  with torch.no_grad():
+    vec = model(img_tensor).squeeze()
+
+  return vec
